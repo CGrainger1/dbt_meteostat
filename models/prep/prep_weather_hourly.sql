@@ -1,7 +1,9 @@
 WITH hourly_data AS (
     SELECT * 
-    FROM {{ref('staging_weather_hourly')}}),
+    FROM {{ref('staging_weather_hourly')}}
+    ),
     add_features AS (
+    select *
 		, timestamp::DATE AS date               -- only date (hours:minutes:seconds) as DATE data type
 		, timestamp::Time AS time                           -- only time (hours:minutes:seconds) as TIME data type
         , TO_CHAR(timestamp,'HH24:MI') as hour  -- time (hours:minutes) as TEXT data type

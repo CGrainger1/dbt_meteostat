@@ -1,5 +1,7 @@
-WITH add_features AS (
-    SELECT *
+WITH hourly_data AS (
+    SELECT * 
+    FROM {{ref('staging_weather_hourly')}}
+    add_features AS (
 		, timestamp::DATE AS date               -- only date (hours:minutes:seconds) as DATE data type
 		, timestamp::Time AS time                           -- only time (hours:minutes:seconds) as TIME data type
         , TO_CHAR(timestamp,'HH24:MI') as hour  -- time (hours:minutes) as TEXT data type
@@ -9,7 +11,7 @@ WITH add_features AS (
 		, DATE_PART('month', timestamp) AS date_month
 		, DATE_PART('year', timestamp) AS date_year
 		, DATE_PART('week', timestamp) AS cw
-    FROM staging_weather_hourly
+    FROM hourly_data
 ),add_more_features AS (
     SELECT *
 		,(CASE 

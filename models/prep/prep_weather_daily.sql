@@ -13,7 +13,7 @@ add_features AS (
     FROM daily_data 
 ),
 add_more_features AS (
-    SELECT
+    SELECT ,
 		(CASE 
             WHEN month_name IN ('November', 'December', 'January') THEN 'winter'
             WHEN month_name IN ('February', 'March', 'May') THEN 'spring'

@@ -6,7 +6,7 @@ WITH daily_data AS (SELECT *
 		,DATE_PART('week', date) AS cw 			-- number of the week of year
 		,TO_CHAR(date, 'FMMonth') AS month_name 	-- name of the month
 		,TO_CHAR(date, 'FMDay') AS weekday 		-- name of the weekday
-    FROM staging_weather_daily
+    FROM daily_data
 ),
 add_more_features AS (
     SELECT *

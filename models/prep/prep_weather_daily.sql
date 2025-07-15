@@ -3,7 +3,7 @@ WITH daily_data AS (
     FROM {{ref('staging_weather_daily')}}
 ),
 add_features AS (
-    SELECT ,
+    SELECT *,
         DATE_PART('day', date) AS date_day,            -- day of month
         DATE_PART('month', date) AS date_month,        -- month number
         DATE_PART('year', date) AS date_year,          -- year number
@@ -13,7 +13,7 @@ add_features AS (
     FROM daily_data 
 ),
 add_more_features AS (
-    SELECT ,
+    SELECT *,
         (CASE 
             WHEN month_name IN ('November', 'December', 'January') THEN 'winter'
             WHEN month_name IN ('February', 'March', 'May') THEN 'spring'
